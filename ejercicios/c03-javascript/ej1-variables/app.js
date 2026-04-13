@@ -1,6 +1,6 @@
 // Declaración con const para datos inmutables
-const nombre = "Leon Luna Guelfo"; 
-const edad = 20; 
+const nombre = "Leon Luna Guelfo";
+const edad = 20;
 const materia = "Desarrollo de Software";
 
 // Mostramos el mensaje usando Template Literals (con las comillas ` backticks)
