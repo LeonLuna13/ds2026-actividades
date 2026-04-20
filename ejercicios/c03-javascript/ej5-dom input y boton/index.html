@@ -2,21 +2,19 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ejercicio 5 - DOM</title>
+    <title>Ejercicio 5 - Árbol de Asteriscos</title>
     <style>
         /* Un poco de estilo para que el error se vea rojo */
-        #error { color: red; font-weight: bold; }
-        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        .error { color: red; font-weight: bold; }
+        pre { background: #eee; padding: 10px; font-size: 1.2rem; }
     </style>
 </head>
 <body>
-    <h1>Generador de Árbol de Asteriscos</h1>
+    <h1>Generador de Medio Árbol</h1>
     
     <label for="altura">Altura del árbol:</label>
-    <input type="number" id="altura" placeholder="Ej: 5">
+    <input type="number" id="altura" placeholder="Ej: 4">
     <button id="btnGenerar">Generar</button>
-
-    <p id="error"></p>
 
     <pre id="resultado"></pre>
 
