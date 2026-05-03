@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // 2. Función asíncrona para obtener los usuarios
 async function obtenerUsuarios() {
     const url = 'https://jsonplaceholder.typicode.com/users';
@@ -35,3 +36,4 @@ async function ejecutarApp() {
 }
 // Iniciamos la aplicación
 ejecutarApp();
+//# sourceMappingURL=app.js.map

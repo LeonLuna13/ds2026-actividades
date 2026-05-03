@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // 2. Datos de prueba
 const catalogo = [
     { isbn: "111", titulo: "El Aleph", autor: "Borges", precio: 1500, disponible: true, genero: "Fantasía" },
@@ -60,4 +62,4 @@ btnTodos.addEventListener("click", () => {
 window.onload = () => {
     renderizar(catalogo);
 };
-export {};
+//# sourceMappingURL=app.js.map

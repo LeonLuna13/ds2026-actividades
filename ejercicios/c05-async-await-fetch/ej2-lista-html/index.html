@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2 - Lista de Usuarios</title>
+    <style>
+        #error-msg { color: red; display: none; font-weight: bold; }
+        #loader { font-style: italic; color: #555; }
+    </style>
+</head>
+<body>
+    <h1>Listado de Usuarios</h1>
+
+    <!-- Estado de carga -->
+    <div id="loader">Cargando usuarios...</div>
+
+    <!-- Mensaje de error -->
+    <div id="error-msg">Hubo un problema al cargar los datos.</div>
+
+    <!-- Lista donde se renderizan los datos -->
+    <ul id="lista-usuarios"></ul>
+
+    <script src="app.js"></script>
+</body>
+</html>

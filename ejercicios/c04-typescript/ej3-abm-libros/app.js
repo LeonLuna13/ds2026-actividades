@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // Empezamos con libros precargados
 let catalogo = [
     { isbn: "AUTO-1", titulo: "El Aleph", autor: "Borges", precio: 1500, disponible: true },
@@ -72,4 +74,4 @@ btnAgregar.addEventListener("click", () => {
 });
 // Carga inicial
 renderizar();
-export {};
+//# sourceMappingURL=app.js.map

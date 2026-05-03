@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // 1. Declaramos las variables UNA SOLA VEZ al principio [cite: 286]
 const input = document.querySelector("#inputAltura");
 const boton = document.querySelector("#btnGenerar");
@@ -20,4 +22,4 @@ boton.addEventListener("click", () => {
         pre.innerText = generarAsteriscos(altura);
     }
 });
-export {};
+//# sourceMappingURL=app.js.map
