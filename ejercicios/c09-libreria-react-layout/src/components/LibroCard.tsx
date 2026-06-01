@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import type { LibroCardProps } from '../types/LibroCardProps';
 
-export function LibroCard({ titulo, autor, precio }: LibroCardProps) {
-  // Estado local para el contador de corazones de cada tarjeta
+export function LibroCard({ id, titulo, autor, precio }: LibroCardProps) {
   const [likes, setLikes] = useState<number>(0);
 
   return (
@@ -19,7 +19,10 @@ export function LibroCard({ titulo, autor, precio }: LibroCardProps) {
         <Card.Text className="text-primary fw-bold fs-5">${precio.toLocaleString('es-AR')}</Card.Text>
         
         <div className="mt-auto d-flex gap-2">
-          <Button variant="outline-primary" className="w-100">Ver más</Button>
+          {/* Usamos Link en lugar de un Button común para navegar sin recargar */}
+          <Link to={`/libros/${id}`} className="btn btn-outline-primary w-100">
+            Ver más
+          </Link>
           <Button variant="outline-danger" onClick={() => setLikes(likes + 1)}>
             ❤️ {likes}
           </Button>

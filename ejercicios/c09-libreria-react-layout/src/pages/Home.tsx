@@ -2,14 +2,13 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { LibroCard } from '../components/LibroCard';
 
 export function Home() {
-  // Mudamos la lista de libros acá
   const librosDestacados = [
-    { titulo: 'Ingeniería de Software', autor: 'Ian Sommerville', precio: 28000 },
-    { titulo: 'Clean Code', autor: 'Robert C. Martin', precio: 25500 },
-    { titulo: 'Diseño UX/UI', autor: 'Don Norman', precio: 19000 },
-    { titulo: 'Sistemas Operativos', autor: 'Andrew S. Tanenbaum', precio: 31000 },
-    { titulo: 'Patrones de Diseño', autor: 'Erich Gamma', precio: 24000 },
-    { titulo: 'Base de Datos', autor: 'Abraham Silberschatz', precio: 27500 }
+    { id: '1', titulo: 'Ingeniería de Software', autor: 'Ian Sommerville', precio: 28000 },
+    { id: '2', titulo: 'Clean Code', autor: 'Robert C. Martin', precio: 25500 },
+    { id: '3', titulo: 'Diseño UX/UI', autor: 'Don Norman', precio: 19000 },
+    { id: '4', titulo: 'Sistemas Operativos', autor: 'Andrew S. Tanenbaum', precio: 31000 },
+    { id: '5', titulo: 'Patrones de Diseño', autor: 'Erich Gamma', precio: 24000 },
+    { id: '6', titulo: 'Base de Datos', autor: 'Abraham Silberschatz', precio: 27500 }
   ];
 
   return (
@@ -23,9 +22,10 @@ export function Home() {
       <Container className="mb-5">
         <h2 className="text-center mb-4">Libros Destacados</h2>
         <Row className="g-4">
-          {librosDestacados.map((libro, index) => (
-            <Col key={index} xs={12} md={4}>
+          {librosDestacados.map((libro) => (
+            <Col key={libro.id} xs={12} md={4}>
               <LibroCard 
+                id={libro.id}
                 titulo={libro.titulo} 
                 autor={libro.autor} 
                 precio={libro.precio} 
