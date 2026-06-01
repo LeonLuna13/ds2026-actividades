@@ -1,7 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { CustomNavbar } from '../components/CustomNavbar';
 import { LibroCard } from '../components/LibroCard';
-import { Footer } from '../components/Footer';
 
 export function Home() {
   // Mudamos la lista de libros acá
@@ -16,7 +14,6 @@ export function Home() {
 
   return (
     <>
-      <CustomNavbar />
       <section className="bg-primary text-white text-center py-5 mb-5 shadow">
         <Container>
           <h1 className="display-3 fw-bold">¡Bienvenidos a Librería UTN!</h1>
@@ -37,7 +34,6 @@ export function Home() {
           ))}
         </Row>
       </Container>
-      <Footer />
     </>
   );
 }
