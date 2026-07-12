@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: libreria_db
+    restart: always
+    environment:
+      POSTGRES_USER: usuario_local
+      POSTGRES_PASSWORD: password_seguro
+      POSTGRES_DB: libreria_backend_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: libreria_api
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_USER=usuario_local
+      - DB_PASSWORD=password_seguro
+      - DB_NAME=libreria_backend_db
+    depends_on:
+      - db
+
+volumes:
+  db_data:
