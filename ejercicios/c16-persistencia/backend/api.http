@@ -1,0 +1,82 @@
+@baseUrl = http://localhost:3000
+
+### ==========================================
+### RUTAS DE LIBROS
+### ==========================================
+
+### 1. Listar todos los libros
+GET {{baseUrl}}/api/libros
+
+### 2. Listar libros (Filtrados por disponibilidad)
+GET {{baseUrl}}/api/libros?disponible=true
+
+### 3. Obtener un libro que EXISTE (Debería devolver 200 OK)
+GET {{baseUrl}}/api/libros/1
+
+### 4. Obtener un libro que NO EXISTE (Debería devolver 404 Not Found)
+GET {{baseUrl}}/api/libros/999
+
+### 5. Crear un libro nuevo (POST)
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "autor": "Julio Cortázar",
+  "precio": 7000,
+  "imagen": "rayuela.jpg",
+  "disponible": true
+}
+
+### 6. Editar un libro existente (PUT)
+PUT {{baseUrl}}/api/libros/1
+Content-Type: application/json
+
+{
+  "titulo": "Libro Uno Editado",
+  "autor": "Autor A",
+  "precio": 8500,
+  "imagen": "img1.jpg",
+  "disponible": false
+}
+
+### 7. Borrar un libro (Debería devolver 204 No Content y nada en el body)
+DELETE {{baseUrl}}/api/libros/1
+
+### 8. Volver a borrar el mismo libro (Debería devolver 404 porque ya no existe)
+DELETE {{baseUrl}}/api/libros/1
+
+
+### ==========================================
+### RUTAS DE AUTORES
+### ==========================================
+
+### 9. Listar todos los autores
+GET {{baseUrl}}/api/autores
+
+### 10. Obtener un autor que EXISTE
+GET {{baseUrl}}/api/autores/1
+
+### 11. Crear un autor nuevo (POST)
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Jorge Luis Borges",
+  "nacionalidad": "Argentina"
+}
+
+### 12. Editar un autor existente (PUT)
+PUT {{baseUrl}}/api/autores/1
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortázar (Editado)",
+  "nacionalidad": "Argentina/Francesa"
+}
+
+### 13. Borrar un autor
+DELETE {{baseUrl}}/api/autores/1
+
+### 14. Borrar un autor que NO EXISTE (Debería devolver 404)
+DELETE {{baseUrl}}/api/autores/999
