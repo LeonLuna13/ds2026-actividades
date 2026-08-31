@@ -1,0 +1,107 @@
+@baseUrl = http://localhost:3000
+
+### ==========================================
+### 1. RUTAS DE CATEGORÍAS (Extensión 1)
+### ==========================================
+
+### Listar categorías
+GET {{baseUrl}}/api/categorias
+
+### Crear categoría
+POST {{baseUrl}}/api/categorias
+Content-Type: application/json
+
+{
+  "nombre": "Ciencia Ficción"
+}
+
+
+### ==========================================
+### 2. RUTAS DE AUTORES
+### ==========================================
+
+### Listar autores
+GET {{baseUrl}}/api/autores
+
+### Crear autor exitoso (201)
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Jorge Luis Borges",
+  "nacionalidad": "Argentina"
+}
+
+### Libros de un autor específico (Extensión 2)
+GET {{baseUrl}}/api/autores/1/libros
+
+
+### ==========================================
+### 3. RUTAS DE LIBROS
+### ==========================================
+
+### Listar todos los libros (Debería traer el autor anidado)
+GET {{baseUrl}}/api/libros
+
+### Filtrar libros por categoría (Extensión 3)
+GET {{baseUrl}}/api/libros?categoria=Novela
+
+### Crear libro exitoso (201)
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "El Aleph",
+  "precio": 9500,
+  "imagen": "aleph.jpg",
+  "autorId": 3
+}
+
+
+### ==========================================
+### 4. PRUEBAS DE ERRORES (Punto 9 de la Actividad)
+### ==========================================
+
+### Error 400 (Zod): Crear libro con precio negativo y sin título
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{ 
+  "precio": -500, 
+  "imagen": "img.jpg", 
+  "autorId": 1 
+}
+
+### Error 400 (Params): ID inválido en la URL
+GET {{baseUrl}}/api/libros/abc
+
+### Error 400 (Regla de negocio - Extensión 4): Autor inexistente
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{ 
+  "titulo": "Libro Imposible", 
+  "precio": 1000, 
+  "imagen": "img.jpg", 
+  "autorId": 9999 
+}
+
+### Error 404 (Prisma P2025): Actualizar o buscar algo que no existe
+PUT {{baseUrl}}/api/libros/9999
+Content-Type: application/json
+
+{
+  "precio": 2000
+}
+
+### Error 409 (Prisma P2002): Crear un autor con un nombre que ya existe (Unique)
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{ 
+  "nombre": "Gabriel García Márquez", 
+  "nacionalidad": "Colombia" 
+}
+
+### Error 409 (Prisma P2003): Borrar un autor que tiene libros (Restrict)
+DELETE {{baseUrl}}/api/autores/1
