@@ -31,8 +31,10 @@ services:
       - ./backend/src:/app/src
       - ./backend/prisma:/app/prisma
       - ./backend/prisma.config.ts:/app/prisma.config.ts
+      - ./backend/.env:/app/.env
     environment:
       - NODE_ENV=development
+      - DATABASE_URL=postgresql://usuario_local:password_seguro@db:5432/libreria_backend_db
       - DB_HOST=db
       - DB_USER=usuario_local
       - DB_PASSWORD=password_seguro

@@ -22,8 +22,8 @@ export function LibroDetalle() {
   return (
     <Container className="py-5 text-center">
       <h2>{libro.titulo}</h2>
-      <img src={`/imgs/${libro.imagen}`} alt={libro.titulo} style={{ maxWidth: '300px' }} className="my-3 img-fluid shadow" />
-      <h4>Autor ID: {libro.autor}</h4>
+      <img src={libro.imagen} alt={libro.titulo} style={{ maxWidth: '300px' }} className="my-3 img-fluid shadow" />
+      <h4>Autor: {libro.autor.nombre}</h4>
       <h3 className="text-primary mb-4">${libro.precio}</h3>
       <p className="lead mb-4">Acá iría la descripción completa, índice y reseñas del libro.</p>
       

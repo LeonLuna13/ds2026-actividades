@@ -3,17 +3,31 @@ import { prisma } from "../src/config/prisma.js";
 
 const autores = [
   { nombre: "Antoine de Saint-Exupéry", nacionalidad: "Francia" },
-  { nombre: "Gabriel García Márquez", nacionalidad: "Colombia" }
+  { nombre: "Gabriel García Márquez", nacionalidad: "Colombia" },
+  { nombre: "Ian Sommerville", nacionalidad: "Reino Unido" },
+  { nombre: "Robert C. Martin", nacionalidad: "Estados Unidos" },
+  { nombre: "Don Norman", nacionalidad: "Estados Unidos" },
+  { nombre: "Andrew S. Tanenbaum", nacionalidad: "Estados Unidos" },
+  { nombre: "Erich Gamma", nacionalidad: "Suiza" },
+  { nombre: "Abraham Silberschatz", nacionalidad: "Israel" }
 ];
 
 const categorias = [
   { nombre: "Novela" },
-  { nombre: "Ficción" }
+  { nombre: "Ficción" },
+  { nombre: "Ingeniería" },
+  { nombre: "Diseño" },
+  { nombre: "Sistemas" },
+  { nombre: "Bases de Datos" }
 ];
 
 const libros = [
-  { titulo: "El principito", autor: "Antoine de Saint-Exupéry", precio: 4500, imagen: "img1.jpg", disponible: true, cats: ["Novela"] },
-  { titulo: "Cien años de soledad", autor: "Gabriel García Márquez", precio: 8000, imagen: "img2.jpg", disponible: true, cats: ["Novela", "Ficción"] }
+  { titulo: "Ingeniería de Software", autor: "Ian Sommerville", precio: 28000, imagen: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1074&auto=format&fit=crop", disponible: true, cats: ["Ingeniería"] },
+  { titulo: "Clean Code", autor: "Robert C. Martin", precio: 25500, imagen: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1074&auto=format&fit=crop", disponible: true, cats: ["Ingeniería"] },
+  { titulo: "Diseño UX/UI", autor: "Don Norman", precio: 19000, imagen: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1074&auto=format&fit=crop", disponible: true, cats: ["Diseño"] },
+  { titulo: "Sistemas Operativos", autor: "Andrew S. Tanenbaum", precio: 31000, imagen: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1074&auto=format&fit=crop", disponible: true, cats: ["Sistemas"] },
+  { titulo: "Patrones de Diseño", autor: "Erich Gamma", precio: 24000, imagen: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1074&auto=format&fit=crop", disponible: true, cats: ["Ingeniería"] },
+  { titulo: "Base de Datos", autor: "Abraham Silberschatz", precio: 27500, imagen: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1074&auto=format&fit=crop", disponible: true, cats: ["Bases de Datos"] }
 ];
 
 const usuarios = [

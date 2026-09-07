@@ -1,15 +1,11 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { LibroCard } from '../components/LibroCard';
+import { useFetch } from '../hooks/useFetch';
+import type { LibroCardProps } from '../types/LibroCardProps';
 
 export function Home() {
-  const librosDestacados = [
-    { id: '1', titulo: 'Ingeniería de Software', autor: 'Ian Sommerville', precio: 28000 },
-    { id: '2', titulo: 'Clean Code', autor: 'Robert C. Martin', precio: 25500 },
-    { id: '3', titulo: 'Diseño UX/UI', autor: 'Don Norman', precio: 19000 },
-    { id: '4', titulo: 'Sistemas Operativos', autor: 'Andrew S. Tanenbaum', precio: 31000 },
-    { id: '5', titulo: 'Patrones de Diseño', autor: 'Erich Gamma', precio: 24000 },
-    { id: '6', titulo: 'Base de Datos', autor: 'Abraham Silberschatz', precio: 27500 }
-  ];
+  const { data: libros, loading, error } = useFetch<LibroCardProps[]>('http://localhost:3000/api/libros');
+  const librosDestacados = libros ? libros.slice(0, 6) : [];
 
   return (
     <>
@@ -21,18 +17,26 @@ export function Home() {
       </section>
       <Container className="mb-5">
         <h2 className="text-center mb-4">Libros Destacados</h2>
-        <Row className="g-4">
-          {librosDestacados.map((libro) => (
-            <Col key={libro.id} xs={12} md={4}>
-              <LibroCard 
-                id={libro.id}
-                titulo={libro.titulo} 
-                autor={libro.autor} 
-                precio={libro.precio} 
-              />
-            </Col>
-          ))}
-        </Row>
+        
+        {loading && <div className="text-center"><Spinner animation="border" variant="primary" /></div>}
+        {error && <Alert variant="danger">{error}</Alert>}
+        
+        {!loading && !error && (
+          <Row className="g-4">
+            {librosDestacados.map((libro) => (
+              <Col key={libro.id} xs={12} md={4}>
+                <LibroCard 
+                  id={libro.id}
+                  titulo={libro.titulo} 
+                  autor={libro.autor} 
+                  precio={libro.precio} 
+                  disponible={libro.disponible}
+                  imagen={libro.imagen}
+                />
+              </Col>
+            ))}
+          </Row>
+        )}
       </Container>
     </>
   );
