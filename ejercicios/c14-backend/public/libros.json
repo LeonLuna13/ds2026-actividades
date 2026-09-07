@@ -1,0 +1,6 @@
+[
+  { "id": 1, "titulo": "El Aleph", "autor": "Jorge Luis Borges", "precio": 12000, "disponible": true, "imagen": "https://placehold.co/300x400?text=El+Aleph" },
+  { "id": 2, "titulo": "1984", "autor": "George Orwell", "precio": 15000, "disponible": true, "imagen": "https://placehold.co/300x400?text=1984" },
+  { "id": 3, "titulo": "Ficciones", "autor": "Jorge Luis Borges", "precio": 11000, "disponible": false, "imagen": "https://placehold.co/300x400?text=Ficciones" },
+  { "id": 4, "titulo": "Fahrenheit 451", "autor": "Ray Bradbury", "precio": 13500, "disponible": true, "imagen": "https://placehold.co/300x400?text=Fahrenheit+451" }
+]
