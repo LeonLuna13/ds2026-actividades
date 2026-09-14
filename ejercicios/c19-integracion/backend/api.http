@@ -1,0 +1,130 @@
+@baseUrl = http://localhost:3000
+
+### ==========================================
+### CASOS DE AUTENTICACIÓN Y REGISTRO
+### ==========================================
+
+### 1. POST /auth/registro (201 sin passwordHash en la respuesta)
+POST {{baseUrl}}/api/auth/registro
+Content-Type: application/json
+
+{ 
+  "nombre": "Ana", 
+  "email": "ana@libreria.test", 
+  "password": "Libreria2026" 
+}
+
+### 2. POST /auth/registro con el mismo email (409 Conflict)
+POST {{baseUrl}}/api/auth/registro
+Content-Type: application/json
+
+{ 
+  "nombre": "Ana Copia", 
+  "email": "ana@libreria.test", 
+  "password": "Libreria2026" 
+}
+
+### 3. POST /auth/registro con password corta o sin número (400 Zod)
+POST {{baseUrl}}/api/auth/registro
+Content-Type: application/json
+
+{ 
+  "nombre": "Pedro", 
+  "email": "pedro@libreria.test", 
+  "password": "abc" 
+}
+
+### 4. POST /auth/login con mail que no existe (401 Credenciales inválidas)
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{ 
+  "email": "fantasmanoexiste@libreria.test", 
+  "password": "Libreria2026" 
+}
+
+### 5. POST /auth/login con password incorrecta (401 Credenciales inválidas - mismo mensaje)
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{ 
+  "email": "ana@libreria.test", 
+  "password": "PasswordFalsa" 
+}
+
+### 6. POST /auth/login correcto del ADMIN precargado en el seed (200 con Token)
+# @name loginAdmin
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{ 
+  "email": "admin@libreria.test", 
+  "password": "Admin1234" 
+}
+
+### Guardamos el token del Admin automáticamente
+@tokenAdmin = {{loginAdmin.response.body.token}}
+
+
+### 7. POST /auth/login correcto de un CLIENTE precargado en el seed (200 con Token)
+# @name loginCliente
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{ 
+  "email": "cliente@libreria.test", 
+  "password": "Cliente1234" 
+}
+
+### Guardamos el token del Cliente automáticamente
+@tokenCliente = {{loginCliente.response.body.token}}
+
+
+### ==========================================
+### CASOS DE AUTORIZACIÓN Y PERMISOS
+### ==========================================
+
+### 7 (Tabla). GET /auth/yo SIN header de autorización (401 Falta el token)
+GET {{baseUrl}}/api/auth/yo
+
+### 8 (Tabla). GET /auth/yo con rol CLIENTE (200 OK)
+GET {{baseUrl}}/api/auth/yo
+Authorization: Bearer {{tokenCliente}}
+
+### 9. POST /api/libros SIN header (401 Falta el token)
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{ 
+  "titulo": "Libro Hacker", 
+  "precio": 5000, 
+  "imagen": "img.jpg", 
+  "autorId": 1 
+}
+
+### 10. POST /api/libros con rol CLIENTE (403 Forbidden - No tenés permiso)
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+Authorization: Bearer {{tokenCliente}}
+
+{ 
+  "titulo": "Libro Prohibido", 
+  "precio": 5000, 
+  "imagen": "img.jpg", 
+  "autorId": 1 
+}
+
+### 11. POST /api/libros con rol ADMIN (201 Created)
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+Authorization: Bearer {{tokenAdmin}}
+
+{ 
+  "titulo": "Ficciones", 
+  "precio": 8800, 
+  "imagen": "ficciones.jpg", 
+  "autorId": 1 
+}
+
+### 12. GET /api/libros sin header (Público -> 200 OK)
+GET {{baseUrl}}/api/libros
